@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
             return
         new_instance = HBNBCommand.classes[new[0]]()
         for i in range(len(new)):
-            news = new[1].split("=")
+            news = new[i].split("=")
             try:
                 if news[1][0] == "\"":
                     news[1] = news[1].replace("\"", "")
