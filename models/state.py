@@ -9,8 +9,8 @@ from models.city import City
 
 class State(BaseModel, Base):
     """ State class """
-    name = Column(String(128), nullable=False)
     __tablename__ = 'states'
+    name = Column(String(128), nullable=False)
     cities = relationship("City", backref="state", cascade="delete")
 
     @property
