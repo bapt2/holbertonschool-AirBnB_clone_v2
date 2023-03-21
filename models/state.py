@@ -13,3 +13,12 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     cities = relationship("City", backref="state", cascade="delete")
 
+    @property
+    def cities(self):
+        """ """
+        cityl= []
+        cities = storage.all(City)
+        for city in cities.values():
+            if self.id == city.state_id:
+                cityl.appent(city)
+        return cityl
