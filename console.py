@@ -122,7 +122,9 @@ class HBNBCommand(cmd.Cmd):
         elif new[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+        # オブジェクトを作成
         new_instance = HBNBCommand.classes[new[0]]()
+        # 属性がある場合は、その属性をオブジェクトに追加する
         for i in range(len(new)):
             news = new[i].split("=")
             try:
@@ -220,11 +222,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)
