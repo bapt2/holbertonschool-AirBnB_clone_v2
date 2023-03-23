@@ -5,16 +5,9 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 import os
-from models.base_model import BaseModel, Base
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
 
 
-class DBStorage:
+class DBStorage():
     """This class manages storage of hbnb models to DBStorage"""
 
     __engine = None
@@ -23,19 +16,27 @@ class DBStorage:
     def __init__(self):
         """Instatntiates"""
 
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}?pool_pre_ping=True'
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
                                       .format(os.getenv('HBNB_MYSQL_USER'),
                                               os.getenv('HBNB_MYSQL_PWD'),
                                               os.getenv('HBNB_MYSQL_HOST'),
-                                              os.getenv('HBNB_MYSQL_DB')))
+                                              os.getenv('HBNB_MYSQL_DB'),
+                                              pool_pre_ping=True))
         
-        metadata = MetaData(bind=self.__engine)
-
         if os.getenv('HBNB_ENV') == 'test':
-            metadata.drop_all()
+            from models.base_model import Base
+            Base.metadata.drop_all()
 
     def all(self, cls=None):
         """Returns the list of objects of one type of class"""
+
+        from models.base_model import Base
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.user import User
+        from models.state import State
         
         res = {}
         if cls is None:
@@ -69,6 +70,14 @@ class DBStorage:
         
     def reload(self):
         """create all tables in the database"""
+
+        from models.base_model import Base
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.user import User
+        from models.state import State
 
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
