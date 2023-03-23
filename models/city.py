@@ -9,9 +9,8 @@ class City(BaseModel, Base):
     """ The city class, contains state ID and name """
 
     __tablename__ = 'cities'
-    __table_args__ = {'extend_existing': True}
 
     name = Column(String(128), nullable=False)
     state_id = Column(String(60), ForeignKey('states.id', ondelete='CASCADE'), nullable=False)
-    state = relationship('State', backref='cities')
+    state = relationship('State', back_populates='cities', cascade='all, delete')
 
