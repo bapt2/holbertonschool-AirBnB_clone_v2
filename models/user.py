@@ -12,7 +12,7 @@ class User(BaseModel, Base):
 
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
-    first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), nullable=False)
+    first_name = Column(String(128), nullable=True)
+    last_name = Column(String(128), nullable=True)
     # relationship with the class Place
     places = relationship('Place', back_populates='user', cascade='all, delete')
