@@ -11,5 +11,10 @@ class City(BaseModel, Base):
     __tablename__ = 'cities'
 
     name = Column(String(128), nullable=False)
-    state_id = Column(String(60), ForeignKey('states.id', ondelete='CASCADE'), nullable=False)
-    state = relationship('State', back_populates='cities', cascade='all, delete')
+    state_id = Column(String(60), ForeignKey('states.id', ondelete='CASCADE'),
+                      nullable=False)
+    state = relationship('State', back_populates='cities',
+                         cascade='all, delete')
+    places = relationship('Place', back_populates='cities',
+                         cascade='all, delete')
+    
