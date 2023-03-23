@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: <class name>.<command>([<id> [<*args> or <**kwargs>]])
         (Brackets denote optional fields in usage example.)
         """
-        _cmd = _cls = _id = _args = ''  # initialize line elements
+        _cmd = _cls = _id = _args = ''# initialize line elements
 
         # scan for general formating - i.e '.', '(', ')'
         if not ('.' in line and '(' in line and ')' in line):
@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """ Create an object of any class""" 
+        """ Create an object of any class"""
         new = arg.split(" ")
         if not new:
             print("** class name missing **")
@@ -145,7 +145,8 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the create method """
         print("Creates a class of any type")
         print("[Usage]: create <className> <param 1> <param 2> <param 3>...\n")
-        print("Param syntax: <key name>=<value> <value> start with a double quote")
+        print("Param syntax: <key name>=<value> <value>\
+               start with a double quote")
 
     def do_show(self, args):
         """ Method to show an individual object """
@@ -335,6 +336,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

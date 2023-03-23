@@ -9,6 +9,7 @@ from models import storage
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
 
@@ -25,7 +26,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            
+
         else:
             del kwargs['__class__']
             for key, value in kwargs.items():
@@ -41,7 +42,6 @@ class BaseModel:
                     self.my_number = value
                 if key == "name":
                     self.name = value
-            
 
     def __str__(self):
         """Returns a string representation of the instance"""
@@ -63,14 +63,12 @@ class BaseModel:
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
-    
+
         if '_sa_instance_state' in dictionary:
             del dictionary['_sa_instance_state']
         return dictionary
-    
+
     def delete(self):
         """Delete the current instance from the storage"""
 
         storage.delete(self)
-
-
