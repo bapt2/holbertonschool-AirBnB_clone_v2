@@ -21,3 +21,4 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=False)
     latitude = Column(Float, nullable=False)
     amenity_ids = Column(JSON)
+    
