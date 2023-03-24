@@ -61,7 +61,7 @@ class FileStorage:
         """Deletes the object from __objects"""
 
         if obj is None:
-            return
+            pass
         
         key = obj.__class__.__name__ + '.' + obj.id
         if key in FileStorage.__objects:
