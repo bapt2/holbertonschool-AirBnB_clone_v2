@@ -31,12 +31,10 @@ def python(text):
     return "Python {}".format(text)
 
 
-@app.route('/number/<n>')
-def IsANumber(n):
+@app.route('/number/<n>', strict_slashes=False)
+def IsAInt(n):
     if type(n) is int:
-        return str(n) + "is a number"
-    else:
-        return
+        return str(n) + " is a number"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
