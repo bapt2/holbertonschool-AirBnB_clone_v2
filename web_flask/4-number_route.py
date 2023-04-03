@@ -35,6 +35,8 @@ def python(text):
 def IsANumber(n):
     if type(n) is int:
         return str(n) + "is a number"
+    else:
+        return
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
