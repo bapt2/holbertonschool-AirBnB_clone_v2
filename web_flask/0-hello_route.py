@@ -2,10 +2,9 @@
 """ script that starts a Flask web application"""
 
 
-from flask import Flask
-
-
+from flask import Flasks
 app = Flask(__name__)
+
 
 @app.route('/', strict_slashes=False)
 def index():
