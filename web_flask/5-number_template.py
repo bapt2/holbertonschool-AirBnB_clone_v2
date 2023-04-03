@@ -41,6 +41,6 @@ def IsAnInt(n):
 def IsAnIntv2(n):
     if type(n) is int:
         return render_template("templates/5-number.html")
-    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
