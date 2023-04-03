@@ -34,7 +34,7 @@ def python(text):
 @app.route('/number/<n>')
 def IsANumber(n):
     if type(n) is int:
-        return "n is a number"
+        return "{} is a number".format(n)
     else:
         return
 
