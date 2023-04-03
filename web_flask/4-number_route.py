@@ -34,9 +34,7 @@ def python(text):
 @app.route('/number/<n>')
 def IsANumber(n):
     if type(n) is int:
-        return "{} is a number".format(n)
-    else:
-        return
+        return str(n) + "is a number"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
