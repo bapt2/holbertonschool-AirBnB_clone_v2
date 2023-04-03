@@ -31,8 +31,8 @@ def python(text):
     return "Python {}".format(text)
 
 
-@app.route('/number/<n>', strict_slashes=False)
-def IsAInt(n):
+@app.route('/number/<int n>', strict_slashes=False)
+def IsAnInt(n):
     if type(n) is int:
         return str(n) + " is a number"
 
