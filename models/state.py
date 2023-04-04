@@ -16,18 +16,17 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         # have cities attribute
-        cities = relationship('City', back_populates='states', cascade='all, delete')
-    
+        cities = relationship('City', back_populates='states',
+                              cascade='all, delete')
+
     # for fileStorage
     else:
         @property
         def cities(self):
             """getter method for cities"""
-            
-            cityl= []
+
+            cityl = []
             for city in list(storage.all(City).values()):
-                    if city.state_id == self.id:
-                        cityl.append(city)
+                if city.state_id == self.id:
+                    cityl.append(city)
             return cityl
-    
-        

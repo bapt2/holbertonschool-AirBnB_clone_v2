@@ -4,7 +4,7 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm.session.close import Close
+from sqlalchemy.orm.session import Close
 import os
 
 
@@ -23,7 +23,7 @@ class DBStorage():
                                               os.getenv('HBNB_MYSQL_HOST'),
                                               os.getenv('HBNB_MYSQL_DB'),
                                               pool_pre_ping=True))
-        
+
         if os.getenv('HBNB_ENV') == 'test':
             from models.base_model import Base
             Base.metadata.drop_all()
@@ -38,7 +38,7 @@ class DBStorage():
         from models.review import Review
         from models.user import User
         from models.state import State
-        
+
         res = {}
         if cls is None:
             classes = [User, State, City, Amenity, Place, Review]
@@ -51,11 +51,11 @@ class DBStorage():
                 key = '{}.{}'.format(cls.__name__, obj.id)
                 res[key] = obj
 
-        return res    
-    
+        return res
+
     def new(self, obj):
         """Add the object to the current database session"""
-        
+
         self.__session.add(obj)
 
     def save(self):
@@ -65,10 +65,10 @@ class DBStorage():
 
     def delete(self, obj=None):
         """Delete from the current database session"""
-        
+
         if obj is not None:
             self.__session.delete(obj)
-        
+
     def reload(self):
         """create all tables in the database"""
 
@@ -87,4 +87,4 @@ class DBStorage():
         self.__session = Session
 
     def close(self):
-            Close(sessionmaker)
+        Close(sessionmaker)

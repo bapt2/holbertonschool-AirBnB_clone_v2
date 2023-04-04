@@ -10,7 +10,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns the list of objects of one type of class"""
-        
+
         if cls is None:
             return FileStorage.__objects
         else:
@@ -53,7 +53,7 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 
@@ -62,7 +62,7 @@ class FileStorage:
 
         if obj is None:
             return
-        
+
         key = obj.__class__.__name__ + '.' + obj.id
         if key in FileStorage.__objects:
             del FileStorage.__objects[key]
