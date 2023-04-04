@@ -4,7 +4,7 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
-from file_storage import close
+from models.engine.file_storage import close
 import os
 
 
