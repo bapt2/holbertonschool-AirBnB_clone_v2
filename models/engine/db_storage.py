@@ -4,6 +4,7 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm.session.close import Close
 import os
 
 
@@ -83,4 +84,7 @@ class DBStorage():
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
-        self.__session = Session                    
+        self.__session = Session
+
+    def close(self):
+            Close(sessionmaker)

@@ -61,8 +61,11 @@ class FileStorage:
         """Deletes the object from __objects"""
 
         if obj is None:
-            pass
+            return
         
         key = obj.__class__.__name__ + '.' + obj.id
         if key in FileStorage.__objects:
             del FileStorage.__objects[key]
+
+    def close(self):
+        reload(self)
