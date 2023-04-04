@@ -46,7 +46,7 @@ def IsAnIntv2(n):
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def IsAnIntv3(n):
     if type(n) is int:
-        return render_template("6-number_odd_or_even", n=n)
+        return render_template("6-number_odd_or_even.html", n=n)
 
 
 if __name__ == '__main__':
