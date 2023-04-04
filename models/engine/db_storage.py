@@ -2,9 +2,7 @@
 """This module defines a class to manage DBstorage for hbnb clone"""
 
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import scoped_session
-from models.engine.file_storage import close
+from sqlalchemy.orm import sessionmaker, scoped_session, close_all_sessions
 import os
 
 
@@ -87,4 +85,4 @@ class DBStorage():
         self.__session = Session
 
     def close(self):
-        close(sessionmaker)
+        close_all_sessions(sessionmaker)
